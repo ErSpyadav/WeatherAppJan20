@@ -1,6 +1,7 @@
 package demo.pushnotification.weatherapp.ui;
 
 
+import android.annotation.SuppressLint;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,40 +21,42 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import demo.pushnotification.weatherapp.R;
 import demo.pushnotification.weatherapp.adapter.WeatherForecastAdapter;
-import demo.pushnotification.weatherapp.viewmodel.ForecastViewModel;
+import demo.pushnotification.weatherapp.listener.ItemListener;
 import demo.pushnotification.weatherapp.model.WeatherForecastResult;
 import demo.pushnotification.weatherapp.utils.AppUtil;
 import demo.pushnotification.weatherapp.utils.CommonUtils;
+import demo.pushnotification.weatherapp.viewmodel.ForecastViewModel;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ForecastFragment extends Fragment {
+public class ForecastFragment extends Fragment implements ItemListener {
 
     @BindView(R.id.recycleview_forecast)
-     RecyclerView recyclerView;
+    RecyclerView recyclerView;
 
     @BindView(R.id.city_name)
-     TextView city;
+    TextView city;
 
     @BindView(R.id.text_date_time)
-     TextView date;
+    TextView date;
 
     @BindView(R.id.weather_icon)
-     ImageView weatheImg;
+    ImageView weatheImg;
 
     @BindView(R.id.humidity)
-     TextView humidity;
+    TextView humidity;
 
     @BindView(R.id.pressure)
-     TextView pressure;
+    TextView pressure;
 
     private ForecastViewModel viewModel;
 
     private String TAG = "ForecastFragment.class";
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private Location currentLocation;
+    private ItemListener listener;
 
 
     @Override
@@ -80,11 +83,9 @@ public class ForecastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_forecast, container, false);
-        ButterKnife.bind(this,view);
-        //city = view.findViewById(R.id.city_name);
-       // geoCord = view.findViewById(R.id.geo_cord);
+        ButterKnife.bind(this, view);
 
-        //recyclerView = view.findViewById(R.id.recycleview_forecast);
+        listener = this;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         mSwipeRefreshLayout = view.findViewById(R.id.swipe_to_refresh);
@@ -100,22 +101,24 @@ public class ForecastFragment extends Fragment {
     }
 
 
-
-
-
     private void dispplayForecastInfo(WeatherForecastResult weatherForecastResult) {
-        WeatherForecastAdapter adapter = new WeatherForecastAdapter(getContext(), weatherForecastResult);
+        WeatherForecastAdapter adapter = new WeatherForecastAdapter(getContext(), weatherForecastResult, listener);
         recyclerView.setAdapter(adapter);
-        updateUi(weatherForecastResult,0);
+        updateUi(weatherForecastResult, 0);
     }
 
-    private void updateUi(WeatherForecastResult weatherForecastResult,int position){
+    @SuppressLint("SetTextI18n")
+    private void updateUi(WeatherForecastResult weatherForecastResult, int position) {
         city.setText(new StringBuilder(weatherForecastResult.city.getName()));
-        date.setText(new StringBuilder(CommonUtils.convertUnixToDate(weatherForecastResult.list.get(0).dt)));
-        AppUtil.setWeatherIcon(getContext(), weatheImg, weatherForecastResult.list.get(0).weather.get(0).id);
-        humidity.setText("Humidity : "+new StringBuilder(weatherForecastResult.list.get(0).main.humidity));
-        pressure.setText("Air Speed : "+new StringBuilder(String.valueOf(weatherForecastResult.list.get(0).wind.getSpeed())));
+        date.setText(new StringBuilder(CommonUtils.convertUnixToDate(weatherForecastResult.list.get(position).dt)));
+        AppUtil.setWeatherIcon(getContext(), weatheImg, weatherForecastResult.list.get(position).weather.get(0).id);
+        humidity.setText("Humidity : " + new StringBuilder(weatherForecastResult.list.get(position).main.humidity));
+        pressure.setText("Air: " + new StringBuilder(String.valueOf(weatherForecastResult.list.get(position).wind.getSpeed())).append("m/s"));
 
     }
 
+    @Override
+    public void onItemSelected(WeatherForecastResult result, int position) {
+        updateUi(result, position);
+    }
 }

@@ -28,27 +28,27 @@
           android:layout_gravity="center"
           android:textColor="@color/black"
           android:textStyle="bold"
-          android:textSize="24dp"
+          android:textSize="@dimen/sp_24"
           />
       <TextView
           android:id="@+id/city_name"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="Pune,India"
+          tools:text="Pune,India"
           android:layout_gravity="center"
           android:textColor="@color/black"
           android:textStyle="italic"
-          android:textSize="20dp"
+          android:textSize="@dimen/sp_20"
           />
       <TextView
           android:id="@+id/text_date_time"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textColor="@color/black"
-          android:textSize="@dimen/dp_20"
+          tools:textSize="@dimen/sp_20"
           android:layout_gravity="center"
           android:textStyle="italic"
-          android:text="2:30 15 Sat 02 2020"/>
+          tools:text="2:30 15 Sat 02 2020"/>
 
    </LinearLayout>
 
