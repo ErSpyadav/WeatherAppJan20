@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="change_city">Change city</string>
+
+    <!-- Put your own APP ID here
+    97308edc05b2b98b235cdfe6400899bf -->
+    <string name="open_weather_maps_app_id">197dae68819dff139385948be4d82762</string>
+
+    <string name="weather_sunny">&#xf00d;</string>
+    <string name="weather_clear_night">&#xf02e;</string>
+
+    <string name="weather_foggy">&#xf014;</string>
+    <string name="weather_cloudy">&#xf013;</string>
+    <string name="weather_rainy">&#xf019;</string>
+    <string name="weather_snowy">&#xf01b;</string>
+    <string name="weather_thunder">&#xf01e;</string>
+    <string name="weather_drizzle">&#xf01c;</string>
+
+    <string name="place_not_found">Sorry, no weather data found.</string>
+
+    <string name="current_label">Current</string>
+    <string name="humidity_label">Humidity</string>
+    <string name="wind_label">Wind</string>
+    <string name="next_4_days_hourly">Next 4 Days/Hourly</string>
+    <string name="next_15_days_label">Next 15 Days</string>
+    <string name="search_for_a_city_label">Search for a city</string>
+    <string name="zero_label">0%d</string>
+    <string name="wind_unit_label">%.0f km/hr</string>
+    <string name="openweathermap_api_key_label">OpenWeatherMap API Key</string>
+    <string name="api_key_description">For using application you should provide API key. It is free. Please open link below and create account. After that you can get API key.</string>
+    <string name="get_api_key_label">Get API Key</string>
+    <string name="api_key_label">API Key</string>
+    <string name="english_label" translatable="false">English</string>
+    <string name="persian_label" translatable="false">فارسی</string>
+    <string name="search_label">Search</string>
+    <string name="no_internet_message">Please check internet connection</string>
+    <string name="no_city_found_message">No city found with this name</string>
+    <string name="invalid_api_key_message">API key is invalid. Wait for next update</string>
+    <string name="network_exception_message">Network connection problem</string>
+    <string name="retry_label">Retry</string>
+    <string name="ok_label">OK</string>
+    <string name="night_mode_label">Night Mode</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

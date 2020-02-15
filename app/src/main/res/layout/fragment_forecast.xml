@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/swipe_to_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ForecastFragment"
+    android:paddingTop="@dimen/dp_20">
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+
+
+   <LinearLayout
+       android:id="@+id/main_info"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Weather forecast"
+          android:layout_gravity="center"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          android:textSize="24dp"
+          />
+      <TextView
+          android:id="@+id/city_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Pune,India"
+          android:layout_gravity="center"
+          android:textColor="@color/black"
+          android:textStyle="italic"
+          android:textSize="20dp"
+          />
+      <TextView
+          android:id="@+id/text_date_time"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@color/black"
+          android:textSize="@dimen/dp_20"
+          android:layout_gravity="center"
+          android:textStyle="italic"
+          android:text="2:30 15 Sat 02 2020"/>
+
+   </LinearLayout>
+
+      <ImageView
+          android:id="@+id/weather_icon"
+          android:layout_width="wrap_content"
+          android:layout_height="200dp"
+          android:layout_marginTop="@dimen/dp_20"
+          app:layout_constraintTop_toBottomOf="@id/main_info"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          android:src="@drawable/ic_few_clouds"/>
+      <TextView
+          android:id="@+id/humidity"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Humidity:100%"
+          android:textColor="@color/colorAccent"
+          android:textStyle="italic"
+          android:layout_marginEnd="@dimen/dp_20"
+          app:layout_constraintTop_toTopOf="@id/weather_icon"
+          app:layout_constraintEnd_toEndOf="parent"/>
+      <TextView
+          android:id="@+id/pressure"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Pressure:1019 HPA"
+          android:textStyle="italic"
+          android:textColor="@color/colorAccent"
+          android:layout_marginEnd="@dimen/dp_20"
+          app:layout_constraintTop_toBottomOf="@id/humidity"
+          app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/recycleview_forecast"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toBottomOf="@id/weather_icon"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       android:layout_marginBottom="@dimen/dp_20"/>
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
